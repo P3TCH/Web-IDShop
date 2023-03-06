@@ -17,11 +17,15 @@
 			</div>
 
 		</div>
-		<div class="mb-3">
+		<form action="/upload" method="post" enctype="multipart/form-data">
 			<label for="formFile" class="form-label">Default file input example</label>
-			<input class="form-control" type="file" id="formFile">
+			<input class="form-control" type="file" name="file">
+			<button type="submit" class="btn btn-success" value="Upload">Upload</button>
+		  </form>
+		<div class="mb-3">
+
 		</div>
-		<button type="button" class="btn btn-success">Upload</button>
+
 	</div>
 	<script>
 		function upload(){

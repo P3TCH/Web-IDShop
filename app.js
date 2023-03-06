@@ -10,15 +10,31 @@ const { emitWarning } = require('process');
 const { application } = require('express');
 const { spawn } = require('child_process');
 const formidable = require('formidable');
+const fs = require('fs');
+const multer = require('multer');
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(
+	multer({
+		dest: __dirname + '/uploads/',
+		//rename to test.xlsx
+		rename: function (fieldname, filename) {
+			return filename;
+		}
+
+	}).single('file')
+);
+
+
 const port = 8080;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/upload', (req, res) => {
+app.post('/upload', (req, res) => {
 	res.send(req.files);
 });
 
